@@ -1,0 +1,26 @@
+import socket
+
+from threading import Thread
+
+ss = socket.socket()
+ss.bind(("localhost", 3000))
+ss.listen()
+clients = {}
+
+
+def client_task(client_name, client_conn, client_addr):
+    while True:
+        data = client_conn.recv(1000)
+        message = client_name+": "+data.decode()
+        for client in clients:
+            if client != client_name:
+                clients[client].sendall(message.encode())
+
+
+while True:
+    conn, addr = ss.accept()
+    print("Got a connection from client at address", addr)
+    name = conn.recv(1000)
+    clients[name.decode()] = conn
+    t = Thread(target=client_task, args=(name.decode(), conn, addr))
+    t.start()
