@@ -1,4 +1,6 @@
 #### ChatApp ####
 # 
-This practice can use for every chat apps
+This practice can be used for every chat apps
+
+
 simple but useful
