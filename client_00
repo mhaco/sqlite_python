@@ -1,0 +1,17 @@
+"""
+1. Create a client socket (consist of both ip add. and port num)
+2. Connect the socket to a server
+3. Communicate
+4. Close the socket
+"""
+import socket
+client_socket = socket.socket()
+
+client_socket.connect(("localhost", 2000))
+print("salam man clientam")
+
+client_socket.sendall("Hi server. I am a client".encode())
+data = client_socket.recv(1024)
+print(data.decode())
+client_socket.close()
+
