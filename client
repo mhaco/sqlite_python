@@ -1,0 +1,27 @@
+import socket
+from threading import Thread
+
+cs = socket.socket()
+cs.connect(("localhost", 3000))
+print("Connected to server")
+name = input("Enter your name:")
+cs.sendall(name.encode())
+
+
+def receive_data():
+    while True:
+        data = cs.recv(2000)
+        print(data.decode())
+
+
+def send_data():
+    while True:
+        user_input = input()
+        cs.sendall(user_input.encode())
+
+
+t = Thread(target=receive_data)
+t.start()
+send_data()
+
+
