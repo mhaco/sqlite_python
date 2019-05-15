@@ -1,0 +1,27 @@
+import sqlite3
+
+connection = sqlite3.connect("school.db")
+
+cursor = connection.cursor()
+
+query = '''CREATE TABLE IF NOT EXISTS student (rn INTEGER, name VARCHAR(20), gender VARCHAR(1), dob DATE);'''
+cursor.execute(query)
+query = '''create table IF NOT EXISTS Teacher (id INTEGER, name VARCHAR(20), gender VARCHAR(1), dob DATE);'''
+cursor.execute(query)
+query = ''' insert into student (rn, name, gender) values(12,"xyz","M");'''
+cursor.execute(query)
+query = ''' Insert into student (rn, name, gender) values(15,"bbb","M");'''
+cursor.execute(query)
+query = ''' Insert into student (rn, name, gender) values(14,"xyz","M");'''
+cursor.execute(query)
+query = ''' Insert into Teacher (id, name, gender) values(43,"xvv","M");'''
+cursor.execute(query)
+query = ''' Insert into student (rn, name, gender) values(26,"poi","F");'''
+cursor.execute(query)
+query = ''' Insert into student (rn, name, gender) values(25,"wer","M");'''
+cursor.execute(query)
+query = ''' Insert into Teacher (id, name, gender) values(14,"def","F");'''
+cursor.execute(query)
+
+connection.commit()
+connection.close()
