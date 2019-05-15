@@ -1,0 +1,23 @@
+import sqlite3
+
+connection = sqlite3.connect("school.db")
+
+cursor = connection.cursor()
+print("student details:")
+
+query = 'select * from student where gender = "M";'
+cursor.execute(query)
+result = cursor.fetchall()
+print(result)
+for student in result:
+    print(student)
+print('Teacher details:')
+
+query = 'select * from Teacher where gender = "F" ;'
+cursor.execute(query)
+result = cursor.fetchall()
+print(result)
+for teacher in result:
+    print(teacher)
+
+connection.close()
